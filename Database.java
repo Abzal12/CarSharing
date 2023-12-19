@@ -20,18 +20,12 @@ public class Database {
 
     public Connection getConnection() {
         try {
-            //Register JDBC driver
             Class.forName(JDBC_DRIVER);
-
-            //Open a connection
-            connection = DriverManager.getConnection(DB_URL + this.databaseFileName);
+            connection = DriverManager.getConnection(DB_URL + databaseFileName);
             connection.setAutoCommit(true);
-        } catch(
-                SQLException se) {
-            //Handle errors for JDBC
-            se.printStackTrace();
-        } catch(Exception e) {
-            //Handle errors for Class.forName
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return connection;
@@ -39,11 +33,11 @@ public class Database {
 
     public void closeConnection() {
         try {
-            if(connection != null) {
+            if (connection != null) {
                 connection.close();
             }
-        } catch(SQLException se){
-            se.printStackTrace();
+        } catch (SQLException e) {
+           e.printStackTrace();
         }
     }
 }

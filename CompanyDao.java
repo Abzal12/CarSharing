@@ -12,4 +12,5 @@ public interface CompanyDao {
     public List<Car> selectCar(int option);
     public void insertCar(String name, int companyId);
     public void deleteCarTable();
+    public void createCustomerTable();
 }
